@@ -55,7 +55,7 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rule'
-import { useStore } from 'vuex'
+import { userStore } from 'vuex'
 // 数据源
 const loginForm = ref({
   username: 'super-admin',
@@ -91,7 +91,7 @@ const onChangePwdType = () => {
 
 // 处理登录
 const loading = ref(false)
-const store = useStore()
+const store = userStore
 const loginFormRef = ref(null)
 const handleLogin = () => {
   // 1. 进行表达校验

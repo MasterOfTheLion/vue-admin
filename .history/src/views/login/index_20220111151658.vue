@@ -3,7 +3,7 @@
     <el-form
       class="login-form"
       :model="loginForm"
-      ref="loginFormRef"
+      :ref="loginRef"
       :rules="loginRules"
     >
       <div class="title-container">
@@ -55,7 +55,7 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rule'
-import { useStore } from 'vuex'
+import { userStore } from 'vuex'
 // 数据源
 const loginForm = ref({
   username: 'super-admin',
@@ -91,26 +91,10 @@ const onChangePwdType = () => {
 
 // 处理登录
 const loading = ref(false)
-const store = useStore()
-const loginFormRef = ref(null)
+const store = userStore
 const handleLogin = () => {
   // 1. 进行表达校验
-  console.log(loginForm.value)
-  loginFormRef.value.validate((valid) => {
-    if (!valid) return
-    // 2. 触发登录操作
-    loading.value = true
-    store
-      .dispatch('user/login', loginForm.value)
-      .then(() => {
-        loading.value = false
-      })
-      .catch((err) => {
-        console.log(err)
-        loading.value = false
-      })
-  })
-
+  // 2. 出发登录操作
   // 3. 进行登录后处理
 }
 </script>

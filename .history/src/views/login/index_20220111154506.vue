@@ -55,7 +55,7 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rule'
-import { useStore } from 'vuex'
+import { userStore } from 'vuex'
 // 数据源
 const loginForm = ref({
   username: 'super-admin',
